@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://bqp0hrxloie2a"]
+
+[ext_resource type="Script" uid="uid://bvp3xsblk7h7p" path="res://player.gd" id="1_45nkh"]
+[ext_resource type="Texture2D" uid="uid://dkdhcj4fdt2ar" path="res://assetpack/Bonus (player ship)/sprite_player_spaceship_up_down.png" id="2_ysdx3"]
+[ext_resource type="Script" uid="uid://d2qha4hx0sn2l" path="res://parallax_background.gd" id="3_t8pok"]
+[ext_resource type="Texture2D" uid="uid://d0vb7uc2dhgf7" path="res://assetpack/parallax/skies/Sky_sky.png" id="4_mtw28"]
+[ext_resource type="Texture2D" uid="uid://cn3j1abekpoo2" path="res://assetpack/parallax/skies/Sky_back_mountain.png" id="5_orj5g"]
+[ext_resource type="Texture2D" uid="uid://6s0i4elsorra" path="res://assetpack/parallax/skies/sky_front_mountain.png" id="6_01kpq"]
+[ext_resource type="Texture2D" uid="uid://0i000mgojoje" path="res://assetpack/parallax/skies/sky_cloud_floor_2.png" id="7_2ka1p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8lbgu"]
+radius = 32.5
+height = 180.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rhuj"]
+atlas = ExtResource("2_ysdx3")
+region = Rect2(0, 0, 350, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msvki"]
+atlas = ExtResource("2_ysdx3")
+region = Rect2(350, 0, 350, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qew1n"]
+atlas = ExtResource("2_ysdx3")
+region = Rect2(700, 0, 350, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlqx7"]
+atlas = ExtResource("2_ysdx3")
+region = Rect2(1050, 0, 350, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwd3o"]
+atlas = ExtResource("2_ysdx3")
+region = Rect2(1400, 0, 350, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ebkc"]
+atlas = ExtResource("2_ysdx3")
+region = Rect2(1750, 0, 350, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48tcl"]
+atlas = ExtResource("2_ysdx3")
+region = Rect2(2100, 0, 350, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wj1es"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rhuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msvki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qew1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlqx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwd3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ebkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48tcl")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v0em"]
+size = Vector2(37, 652)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bfdd"]
+size = Vector2(36, 654)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrten"]
+size = Vector2(1103, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqhrn"]
+size = Vector2(1097, 40)
+
+[node name="Jogo" type="Node2D" unique_id=1634099602]
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=551381284]
+position = Vector2(24, 17)
+script = ExtResource("1_45nkh")
+
+[node name="corpo player" type="CollisionShape2D" parent="player" unique_id=1976875231]
+position = Vector2(116, 305.5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8lbgu")
+
+[node name="Imagem player" type="AnimatedSprite2D" parent="player" unique_id=1588066724]
+position = Vector2(117.00001, 305)
+scale = Vector2(0.60571426, 0.6199999)
+sprite_frames = SubResource("SpriteFrames_wj1es")
+animation = &"new_animation"
+
+[node name="Paredes" type="StaticBody2D" parent="." unique_id=1408806632]
+position = Vector2(81, 179)
+
+[node name="Esq" type="CollisionShape2D" parent="Paredes" unique_id=1633521413]
+position = Vector2(-64, 146)
+shape = SubResource("RectangleShape2D_1v0em")
+
+[node name="Dir" type="CollisionShape2D" parent="Paredes" unique_id=1409192705]
+position = Vector2(1051, 145)
+shape = SubResource("RectangleShape2D_4bfdd")
+
+[node name="Teto" type="CollisionShape2D" parent="Paredes" unique_id=260536874]
+position = Vector2(494.5, -161)
+shape = SubResource("RectangleShape2D_mrten")
+
+[node name="Chão" type="CollisionShape2D" parent="Paredes" unique_id=1198905570]
+position = Vector2(503, 450)
+shape = SubResource("RectangleShape2D_lqhrn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1090018573]
+script = ExtResource("3_t8pok")
+
+[node name="Fundo ceu" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1731455526]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Fundo ceu" unique_id=1009951348]
+position = Vector2(577, 497)
+scale = Vector2(0.6052632, 1)
+texture = ExtResource("4_mtw28")
+
+[node name="Fundo montanha" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1178875845]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Fundo montanha" unique_id=412624304]
+position = Vector2(576.5, 322.99997)
+scale = Vector2(0.60368425, 0.6419999)
+texture = ExtResource("5_orj5g")
+
+[node name="Frente montanha" type="ParallaxLayer" parent="ParallaxBackground" unique_id=528123501]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Frente montanha" unique_id=1264396765]
+position = Vector2(576.5, 322.99997)
+scale = Vector2(0.6036842, 0.64599997)
+texture = ExtResource("6_01kpq")
+
+[node name="Frente nuvens" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1342530522]
+motion_scale = Vector2(3, 3)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Frente nuvens" unique_id=1497180677]
+position = Vector2(578.49994, 326.5)
+scale = Vector2(0.6089473, 0.649)
+texture = ExtResource("7_2ka1p")

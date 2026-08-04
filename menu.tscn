@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://cd3c4sr8qfy57"]
+
+[ext_resource type="Script" uid="uid://dpa6l1sbdq4tr" path="res://menu.gd" id="1_mae5d"]
+[ext_resource type="Texture2D" uid="uid://d0vb7uc2dhgf7" path="res://assetpack/parallax/skies/Sky_sky.png" id="2_4hy44"]
+[ext_resource type="FontFile" uid="uid://dafvmayxk2pp6" path="res://assetpack/parallax/Diary Story.otf" id="3_ytr4m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lkgln"]
+texture = ExtResource("2_4hy44")
+region_rect = Rect2(0, -132, 1900, 1000)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f46q7"]
+bg_color = Color(0.30588236, 0.61960787, 0.5882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jdlmr"]
+bg_color = Color(0.5930384, 0.5839757, 1.92523e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lbgu"]
+bg_color = Color(0.5821476, 0.7850036, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1v0em"]
+bg_color = Color(0.29071054, 0.0009134254, 0.66072154, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bfdd"]
+bg_color = Color(0.59793335, 3.9370956e-05, 0.47395134, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrten"]
+bg_color = Color(0.58399904, 0, 0.06654449, 1)
+
+[node name="Menu" type="Control" unique_id=1671092345]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mae5d")
+
+[node name="Fundo" type="Panel" parent="." unique_id=165532967]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_lkgln")
+
+[node name="Título" type="Label" parent="." unique_id=155652633]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -330.0
+offset_top = 60.0
+offset_right = 325.0
+offset_bottom = 335.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_ytr4m")
+theme_override_font_sizes/font_size = 250
+text = "Parallax"
+
+[node name="Botões" type="VBoxContainer" parent="." unique_id=319559429]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -212.0
+offset_right = 228.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="jogar" type="Button" parent="Botões" unique_id=939147988]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ytr4m")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_f46q7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jdlmr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8lbgu")
+text = "Jogar"
+
+[node name="Sair" type="Button" parent="Botões" unique_id=1118825505]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ytr4m")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_1v0em")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4bfdd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mrten")
+text = "Sair"
+
+[connection signal="pressed" from="Botões/jogar" to="." method="_on_jogar_pressed"]
+[connection signal="pressed" from="Botões/Sair" to="." method="_on_sair_pressed"]

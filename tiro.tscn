@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bgamo4rl87d6f"]
+
+[ext_resource type="Script" uid="uid://ol2lcciopfr7" path="res://tiro.gd" id="1_gp2hl"]
+[ext_resource type="Texture2D" uid="uid://fsvmjdg8wqma" path="res://assetpack/Bonus (player ship)/shooting laser-sheet.png" id="2_wib4g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4dry"]
+atlas = ExtResource("2_wib4g")
+region = Rect2(0, 0, 211, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biowf"]
+atlas = ExtResource("2_wib4g")
+region = Rect2(211, 0, 211, 92)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkgln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4dry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biowf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj1es"]
+radius = 15.0
+height = 154.0
+
+[node name="tiro" type="Area2D" unique_id=770988072]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_gp2hl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=413745158]
+position = Vector2(374.75, 218.5)
+scale = Vector2(0.91232216, 0.92391306)
+sprite_frames = SubResource("SpriteFrames_lkgln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2144615396]
+position = Vector2(371, 216)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wj1es")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

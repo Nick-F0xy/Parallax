@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqp0hrxloie2a"]
 
 [ext_resource type="Script" uid="uid://bvp3xsblk7h7p" path="res://player.gd" id="1_45nkh"]
+[ext_resource type="Script" uid="uid://c4b3kowcflu0v" path="res://jogo.gd" id="1_t8pok"]
 [ext_resource type="Texture2D" uid="uid://dkdhcj4fdt2ar" path="res://assetpack/Bonus (player ship)/sprite_player_spaceship_up_down.png" id="2_ysdx3"]
 [ext_resource type="Script" uid="uid://d2qha4hx0sn2l" path="res://parallax_background.gd" id="3_t8pok"]
 [ext_resource type="Texture2D" uid="uid://d0vb7uc2dhgf7" path="res://assetpack/parallax/skies/Sky_sky.png" id="4_mtw28"]
@@ -11,7 +12,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8lbgu"]
 radius = 32.5
-height = 180.0
+height = 108.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rhuj"]
 atlas = ExtResource("2_ysdx3")
@@ -82,7 +83,14 @@ size = Vector2(1103, 42)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqhrn"]
 size = Vector2(1097, 7)
 
-[node name="Jogo" type="Node2D" unique_id=1634099602]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkgln"]
+bg_color = Color(0.65757984, 0.44415227, 1, 1)
+
+[node name="Jogo" type="Node2D" unique_id=1634099602 node_paths=PackedStringArray("Vidas_node", "Pontos_node", "player")]
+script = ExtResource("1_t8pok")
+Vidas_node = NodePath("CanvasLayer/PanelContainer/HBoxContainer/Vidas")
+Pontos_node = NodePath("CanvasLayer/PanelContainer/HBoxContainer/Pontos")
+player = NodePath("player")
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=551381284]
 position = Vector2(199, 324)
@@ -93,7 +101,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8lbgu")
 
 [node name="Imagem player" type="AnimatedSprite2D" parent="player" unique_id=1588066724]
-scale = Vector2(0.60571426, 0.6199999)
+scale = Vector2(0.36, 0.4099999)
 sprite_frames = SubResource("SpriteFrames_wj1es")
 animation = &"new_animation"
 
@@ -138,8 +146,9 @@ scale = Vector2(0.60368425, 0.6419999)
 texture = ExtResource("5_orj5g")
 
 [node name="Frente montanha" type="ParallaxLayer" parent="ParallaxBackground" unique_id=528123501]
+position = Vector2(2, 0)
 motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(1152, 0)
+motion_mirroring = Vector2(1145.42, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Frente montanha" unique_id=1264396765]
 position = Vector2(576.5, 322.99997)
@@ -161,5 +170,36 @@ script = ExtResource("8_ysdx3")
 [node name="Timer" type="Timer" parent="Gerador de inimigos" unique_id=1014361311]
 wait_time = 2.0
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1749330157]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=951972872]
+offset_right = 218.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lkgln")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=2133008331]
+layout_mode = 2
+
+[node name="Vidas" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=1827335429]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "VIDAS:5"
+
+[node name="Pontos" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=578855160]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "PONTOS:0"
+
+[node name="fim do jogo" type="CanvasLayer" parent="." unique_id=148464179]
+visible = false
+
+[node name="Label" type="Label" parent="fim do jogo" unique_id=1155288001]
+offset_left = 98.0
+offset_top = 569.0
+offset_right = 1077.0
+offset_bottom = 624.0
+theme_override_font_sizes/font_size = 40
+text = "Fim de jogo, pressione espaço para voltar ao menu"
 
 [connection signal="timeout" from="Gerador de inimigos/Timer" to="Gerador de inimigos" method="_on_timer_timeout"]

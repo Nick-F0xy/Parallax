@@ -20,4 +20,6 @@ func explodir() :
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		body. vidas -= 1
+		var jogo = get_tree().current_scene
+		jogo.atualizar_hud()
 		explodir()

@@ -35,12 +35,12 @@ collision_mask = 2
 script = ExtResource("1_gp2hl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=413745158]
-position = Vector2(374.75, 218.5)
+position = Vector2(3.25, 0.49996948)
 scale = Vector2(0.91232216, 0.92391306)
 sprite_frames = SubResource("SpriteFrames_lkgln")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2144615396]
-position = Vector2(371, 216)
+position = Vector2(-0.5, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_wj1es")
 

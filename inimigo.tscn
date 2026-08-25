@@ -103,13 +103,13 @@ collision_layer = 2
 script = ExtResource("1_g45jm")
 
 [node name="ImagemInimigo" type="AnimatedSprite2D" parent="." unique_id=1845012547]
-position = Vector2(514, 249.5)
+position = Vector2(-2, 1.5000153)
 scale = Vector2(0.5027623, 0.5373832)
 sprite_frames = SubResource("SpriteFrames_lkgln")
 autoplay = "default"
 
 [node name="CorpoInimigo" type="CollisionShape2D" parent="." unique_id=1741167335]
-position = Vector2(518, 247)
+position = Vector2(2, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_wj1es")
 
